@@ -69,7 +69,7 @@ class UserRows extends StatelessWidget {
                   label: Text("Modified at"),
                 ),
               ],
-              rows: List.generate(users.length,(index) => recentFileDataRow(users[index],context),
+              rows: List.generate(users.length,(index) => userDataRow(users[index],context),
               ),
             ),
           ),
@@ -79,7 +79,7 @@ class UserRows extends StatelessWidget {
   }
 }
 
-DataRow recentFileDataRow(User user, context) {
+DataRow userDataRow(User user, context) {
 	print(user);
 	print(user.email);
 	print("HOI");
@@ -95,7 +95,7 @@ DataRow recentFileDataRow(User user, context) {
       DataCell(Text(user.modified_at.toString()))
     ],
     onSelectChanged: (bool? value) {
-              Provider.of<MenuController>(context,listen:false).changePage(pageRoutes.userDetails);
+              Navigator.of(context).pushNamed(pageRoutes.userDetails);
               User.currentUser = user;
             }
     

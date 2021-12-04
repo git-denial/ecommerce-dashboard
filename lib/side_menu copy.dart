@@ -1,5 +1,5 @@
 import 'package:admin/screens/dashboard/dashboard_screen.dart';
-import 'package:admin/screens/user/userList.dart';
+import 'package:admin/screens/User%20List/userList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -24,13 +24,13 @@ class SideMenu extends StatelessWidget {
            DrawerListTile(
             title: "Users",
             svgSrc: "assets/icons/menu_profile.svg",
-            press: () {Provider.of<MenuController>(context,listen:false).changePage(UserListScreen.routeName);},
+            press: () {Navigator.of(context).pushNamed(pageRoutes.userList);},
             // press: () {Navigator.pushReplacementNamed(context, pageRoutes.goTo[UserListScreen.routeName]);},
           ),
           DrawerListTile(
             title: "Dashboard",
             svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {Provider.of<MenuController>(context,listen:false).changePage(DashboardScreen.routeName);},
+            press: () {Navigator.of(context).pushNamed(pageRoutes.dashboard);},
             // press: () {Navigator.pushReplacementNamed(context, pageRoutes.goTo[DashboardScreen.routeName]);},
           ),
          

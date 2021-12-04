@@ -1,9 +1,13 @@
 import 'package:admin/constants.dart';
 import 'package:admin/controllers/MenuController.dart';
+import 'package:admin/screens/dashboard/dashboard_screen.dart';
 import 'package:admin/screens/main/main_screen.dart';
+import 'package:admin/screens/User%20Details/userDetails.dart';
+import 'package:admin/screens/User%20List/userList.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'routes.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,19 +26,12 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(
-            value: MenuController(),
-          ),
-        ],
-      
-      child: MainScreen(),
-      ),
-      // routes:{
-      //   pageRoutes.dashboardHome['name']:(context)=> DashboardScreen(),
-      //   pageRoutes.userList['name']:(context)=> pageRoutes.userList['screen'],
-      // }
+      home: MainScreen(),
+      routes:{
+        pageRoutes.dashboard:(context)=> MainScreen(),
+        pageRoutes.userList:(context)=> UserListScreen(),
+        pageRoutes.userDetails:(context)=> UserDetails()
+      }
     );
   }
 }
