@@ -9,11 +9,10 @@ class UserDetails extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+      body: Container(
         padding: EdgeInsets.all(defaultPadding),
         decoration: BoxDecoration(
           color: secondaryColor,
@@ -23,9 +22,10 @@ class UserDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ElevatedButton(
-              child: const Icon(Icons.arrow_back),
-              onPressed: () {Navigator.pop(context);}
-            ),
+                child: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
             Text(
               "User Details",
               style: Theme.of(context).textTheme.subtitle1,
@@ -36,8 +36,10 @@ class UserDetails extends StatelessWidget {
                 children: <Widget>[
                   new ListTile(
                     leading: const Icon(Icons.person),
+                    subtitle: const Text("Name",style: TextStyle(color: Colors.white,)),
                     title: new TextField(
-                      controller: TextEditingController(text: User.currentUser?.full_name ),
+                      controller: TextEditingController(
+                          text: User.currentUser?.full_name),
                       decoration: new InputDecoration(
                         hintText: "Name",
                       ),
@@ -45,43 +47,78 @@ class UserDetails extends StatelessWidget {
                   ),
                   new ListTile(
                     leading: const Icon(Icons.email),
+                    subtitle: const Text("Email",style: TextStyle(color: Colors.white,)),
                     title: new TextField(
-                      controller: TextEditingController(text: User.currentUser?.email ),
+                      controller:
+                          TextEditingController(text: User.currentUser?.email),
                       decoration: new InputDecoration(
                         hintText: "Email",
                       ),
                     ),
                   ),
                   new ListTile(
+                    subtitle: const Text("City",style: TextStyle(color: Colors.white,)),
                     leading: const Icon(Icons.location_city),
                     title: new TextField(
-                      controller: TextEditingController(text: User.currentUser?.city ),
+                      controller:
+                          TextEditingController(text: User.currentUser?.city),
                       decoration: new InputDecoration(
                         hintText: "City",
                       ),
                     ),
                   ),
                   new ListTile(
+                    subtitle: const Text("Province",style: TextStyle(color: Colors.white,)),
                     leading: const Icon(Icons.place),
                     title: new TextField(
-                      controller: TextEditingController(text: User.currentUser?.province ),
+                      controller: TextEditingController(
+                          text: User.currentUser?.province),
                       decoration: new InputDecoration(
                         hintText: "Province",
                       ),
                     ),
                   ),
                   new ListTile(
+                    subtitle: const Text("ZIP Code",style: TextStyle(color: Colors.white,)),
                     leading: const Icon(Icons.code),
                     title: new TextField(
-                      controller: TextEditingController(text: User.currentUser?.zip_code ),
+                      controller: TextEditingController(
+                          text: User.currentUser?.zip_code),
                       decoration: new InputDecoration(
                         hintText: "ZIP Code",
                       ),
                     ),
                   ),
-                  
+                  new ListTile(
+                    subtitle: const Text("Phone Number",style: TextStyle(color: Colors.white,)),
+                    leading: const Icon(Icons.code),
+                    title: new TextField(
+                      controller: TextEditingController(
+                          text: User.currentUser?.phone_num),
+                      decoration: new InputDecoration(
+                        hintText: "Phone Number",
+                      ),
+                    ),
+                  ),
                   const Divider(
-                    height: 1.0,
+                    height: 100.0,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                          child: const Text("Update"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                      SizedBox(width: 50),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary:Colors.red),
+                          child: const Text("Delete"),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
+                    ],
                   ),
                 ],
               ),
@@ -92,4 +129,3 @@ class UserDetails extends StatelessWidget {
     );
   }
 }
-
