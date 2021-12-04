@@ -9,12 +9,10 @@ class UserDetails extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static String routeName = 'User Details';
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: SideMenu(),
         body: Container(
         padding: EdgeInsets.all(defaultPadding),
         decoration: BoxDecoration(
@@ -27,8 +25,7 @@ class UserDetails extends StatelessWidget {
             ElevatedButton(
               child: const Icon(Icons.arrow_back),
               onPressed: () {Navigator.pop(context);}
-            )
-            ,
+            ),
             Text(
               "User Details",
               style: Theme.of(context).textTheme.subtitle1,
