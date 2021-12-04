@@ -91,7 +91,7 @@ class UserDetails extends StatelessWidget {
                   ),
                   new ListTile(
                     subtitle: const Text("Phone Number",style: TextStyle(color: Colors.white,)),
-                    leading: const Icon(Icons.code),
+                    leading: const Icon(Icons.phone),
                     title: new TextField(
                       controller: TextEditingController(
                           text: User.currentUser?.phone_num),
@@ -101,7 +101,7 @@ class UserDetails extends StatelessWidget {
                     ),
                   ),
                   const Divider(
-                    height: 100.0,
+                    height: 20.0,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -109,7 +109,7 @@ class UserDetails extends StatelessWidget {
                       ElevatedButton(
                           child: const Text("Update"),
                           onPressed: () {
-                            Navigator.pop(context);
+                            print(getAll());
                           }),
                       SizedBox(width: 50),
                       ElevatedButton(

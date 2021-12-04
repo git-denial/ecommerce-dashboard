@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
+import '../API.dart';
 
 import 'package:flutter/cupertino.dart';
 
@@ -35,6 +35,14 @@ class User extends ChangeNotifier{
   // return json.decode(result.body)['results'];
 
   // }
+}
+
+Future<void> getAll() async {
+  try {
+    return await getAllUser();
+  } catch (e) {
+    return null;
+  }
 }
 
 
