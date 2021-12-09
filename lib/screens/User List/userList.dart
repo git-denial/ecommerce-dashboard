@@ -1,3 +1,4 @@
+import 'package:admin/models/User.dart';
 import 'package:admin/responsive.dart';
 import 'package:admin/screens/User%20List/components/userRowList.dart';
 import 'package:flutter/material.dart';
@@ -5,8 +6,21 @@ import '../../constants.dart';
 import '../../side_menu.dart';
 import '../../header.dart';
 
-class UserListScreen extends StatelessWidget {
+class UserListScreen extends StatefulWidget {
   static String routeName = 'User List';
+
+  @override
+  _UserListScreenState createState() => _UserListScreenState();
+}
+
+class _UserListScreenState extends State<UserListScreen> {
+  @override
+  void initState() {
+    super.initState();
+    () async {
+      User.users = await User.getAll();
+    }();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +51,11 @@ class UserListScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 SizedBox(height: defaultPadding),
-                                UserRows(),
+                                FutureBuilder(
+                                    future: User.getAll(),
+                                    builder: (ctx, snapshot) {
+                                      return UserRows();
+                                    }),
                                 if (Responsive.isMobile(context))
                                   SizedBox(height: defaultPadding),
                                 // if (Responsive.isMobile(context)) StarageDetails(),

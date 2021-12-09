@@ -8,17 +8,17 @@ import 'package:provider/provider.dart';
 import '../../../constants.dart';
 
 class UserRows extends StatelessWidget {
-  const UserRows({
+   UserRows({
     Key? key,
   }) : super(key: key);
 
 
+
   @override
   Widget build(BuildContext context) {
-    List users = User.fromJsonString(jsonUsers);
+    List<User> users = User.users;
 	//List xxx = List.generate(users.length,(index) => (users[index]));
 	//print(xxx);
-    debugPrint(users[0].email);
     // json.decode(users).forEach((element) {
     //   debugPrint(element['email']);
     //   });
@@ -80,9 +80,6 @@ class UserRows extends StatelessWidget {
 }
 
 DataRow userDataRow(User user, context) {
-	print(user);
-	print(user.email);
-	print("HOI");
   return DataRow(
     cells: [
       DataCell(Text(user.id.toString())),

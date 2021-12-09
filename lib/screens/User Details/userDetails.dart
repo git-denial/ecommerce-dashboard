@@ -109,7 +109,7 @@ class UserDetails extends StatelessWidget {
                       ElevatedButton(
                           child: const Text("Update"),
                           onPressed: () {
-                            print(getAll());
+                            User.update(User.currentUser!.id,{""});
                           }),
                       SizedBox(width: 50),
                       ElevatedButton(
