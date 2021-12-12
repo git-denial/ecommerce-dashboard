@@ -45,6 +45,7 @@ class UserDetails extends StatelessWidget {
                           color: Colors.white,
                         )),
                     title: new TextField(
+                      onChanged: (v){User.currentUser?.full_name = v;},
                       controller: TextEditingController(
                           text: User.currentUser?.full_name),
                       decoration: new InputDecoration(
@@ -130,8 +131,23 @@ class UserDetails extends StatelessWidget {
                     children: [
                       ElevatedButton(
                           child: const Text("Update"),
-                          onPressed: () {
-                            User.update(User.currentUser!.id, {""});
+                          onPressed: () async {
+                            try {
+                              var res =
+                                  await User.update(User.currentUser?.id, json.encode({"full_name":User.currentUser?.full_name}));
+
+                              String title = "Success";
+                              String content = "User updated successfully";
+
+                              showDialogAlert(context, title, content);
+                            } catch (e) {
+                              var err = HTTPErrorType.fromJson(
+                                  json.decode(e.toString()));
+                              var errObject = err.generateAlertitleContent();
+                              String title = errObject['title']!;
+                              String content = errObject['content']!;
+                              showDialogAlert(context, title, content);
+                            }
                           }),
                       SizedBox(width: 50),
                       ElevatedButton(
@@ -139,17 +155,17 @@ class UserDetails extends StatelessWidget {
                           child: const Text("Delete"),
                           onPressed: () async {
                             try {
-                              var res=await User.delete(User.currentUser?.id);
+                              var res = await User.delete(User.currentUser?.id);
 
                               String title = "Success";
                               String content = "User deleted successfully";
 
-                              Navigator.popAndPushNamed(context,UserListScreen.routeName);
+                              Navigator.popAndPushNamed(
+                                  context, UserListScreen.routeName);
                               showDialogAlert(context, title, content);
-
-                              
                             } catch (e) {
-                              var err = HTTPErrorType.fromJson(json.decode(e.toString()));
+                              var err = HTTPErrorType.fromJson(
+                                  json.decode(e.toString()));
                               var errObject = err.generateAlertitleContent();
                               String title = errObject['title']!;
                               String content = errObject['content']!;

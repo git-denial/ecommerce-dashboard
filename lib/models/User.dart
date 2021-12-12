@@ -85,6 +85,8 @@ Future<void> getById(id) async {
 
 static Future<void> update(id,body) async {
   try {
+    print(id);
+    print(body);
     var x = await apiRequest("v1/user/$id", "PUT",body);
     x = User.fromJsonString(x);
     return x;
