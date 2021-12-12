@@ -92,7 +92,7 @@ DataRow userDataRow(User user, context) {
       DataCell(Text(user.modified_at.toString()))
     ],
     onSelectChanged: (bool? value) {
-              Navigator.of(context).pushNamed(pageRoutes.userDetails);
+              Navigator.of(context).pushNamed('${pageRoutes.userDetails}/${user.id.toString()}');
               User.currentUser = user;
             }
     

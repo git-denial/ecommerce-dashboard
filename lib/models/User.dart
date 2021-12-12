@@ -90,18 +90,17 @@ static Future<void> update(id,body) async {
     return x;
   } catch (e) {
     print(e);
-    return null;
+    throw e;
   }
 }
 
-Future<void> delete(id) async {
+static Future<void> delete(id) async {
   try {
     var x = await apiRequest("v1/user/$id", "DELETE");
-    x = User.fromJsonString(x);
     return x;
   } catch (e) {
     print(e);
-    return null;
+    throw e;
   }
 }
 }

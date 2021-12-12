@@ -18,7 +18,7 @@ Function apiRequest = (route,method,[token,body]) async {
       response =  await http.post(Uri.parse('${baseUrl}/${route}',body));
       break;
       case "PUT":
-      response =  await http.put(Uri.parse('${baseUrl}/${route}'));
+      response =  await http.put(Uri.parse('${baseUrl}/${route}', body));
       break;
       case "DELETE":
       response = await http.delete(Uri.parse('${baseUrl}/${route}'));
@@ -32,7 +32,7 @@ Function apiRequest = (route,method,[token,body]) async {
   } else {
     // If the server did not return a 200 OK response,
     // then throw an exception.
-    throw Exception('Failed to load response');
+    throw response.body;
   }
 };
 

@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
         pageRoutes.dashboard:(context)=> MainScreen(),
         pageRoutes.userList:(context)=> UserListScreen(),
         pageRoutes.userDetails:(context)=> UserDetailsScreen()
-      }
+      },
+      
     );
   }
 }

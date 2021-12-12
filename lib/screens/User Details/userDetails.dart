@@ -1,7 +1,11 @@
-import 'package:admin/models/User.dart';
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:admin/models/User.dart';
+import 'package:admin/screens/User%20List/userList.dart';
+import 'package:flutter/material.dart';
+import '../../dialogAlert.dart';
 import '../../../constants.dart';
+import '../../error.dart';
 import '../../side_menu.dart';
 
 class UserDetails extends StatelessWidget {
@@ -36,7 +40,10 @@ class UserDetails extends StatelessWidget {
                 children: <Widget>[
                   new ListTile(
                     leading: const Icon(Icons.person),
-                    subtitle: const Text("Name",style: TextStyle(color: Colors.white,)),
+                    subtitle: const Text("Name",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                     title: new TextField(
                       controller: TextEditingController(
                           text: User.currentUser?.full_name),
@@ -47,7 +54,10 @@ class UserDetails extends StatelessWidget {
                   ),
                   new ListTile(
                     leading: const Icon(Icons.email),
-                    subtitle: const Text("Email",style: TextStyle(color: Colors.white,)),
+                    subtitle: const Text("Email",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                     title: new TextField(
                       controller:
                           TextEditingController(text: User.currentUser?.email),
@@ -57,7 +67,10 @@ class UserDetails extends StatelessWidget {
                     ),
                   ),
                   new ListTile(
-                    subtitle: const Text("City",style: TextStyle(color: Colors.white,)),
+                    subtitle: const Text("City",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                     leading: const Icon(Icons.location_city),
                     title: new TextField(
                       controller:
@@ -68,7 +81,10 @@ class UserDetails extends StatelessWidget {
                     ),
                   ),
                   new ListTile(
-                    subtitle: const Text("Province",style: TextStyle(color: Colors.white,)),
+                    subtitle: const Text("Province",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                     leading: const Icon(Icons.place),
                     title: new TextField(
                       controller: TextEditingController(
@@ -79,7 +95,10 @@ class UserDetails extends StatelessWidget {
                     ),
                   ),
                   new ListTile(
-                    subtitle: const Text("ZIP Code",style: TextStyle(color: Colors.white,)),
+                    subtitle: const Text("ZIP Code",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                     leading: const Icon(Icons.code),
                     title: new TextField(
                       controller: TextEditingController(
@@ -90,7 +109,10 @@ class UserDetails extends StatelessWidget {
                     ),
                   ),
                   new ListTile(
-                    subtitle: const Text("Phone Number",style: TextStyle(color: Colors.white,)),
+                    subtitle: const Text("Phone Number",
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
                     leading: const Icon(Icons.phone),
                     title: new TextField(
                       controller: TextEditingController(
@@ -109,14 +131,30 @@ class UserDetails extends StatelessWidget {
                       ElevatedButton(
                           child: const Text("Update"),
                           onPressed: () {
-                            User.update(User.currentUser!.id,{""});
+                            User.update(User.currentUser!.id, {""});
                           }),
                       SizedBox(width: 50),
                       ElevatedButton(
-                          style: ElevatedButton.styleFrom(primary:Colors.red),
+                          style: ElevatedButton.styleFrom(primary: Colors.red),
                           child: const Text("Delete"),
-                          onPressed: () {
-                            Navigator.pop(context);
+                          onPressed: () async {
+                            try {
+                              var res=await User.delete(User.currentUser?.id);
+
+                              String title = "Success";
+                              String content = "User deleted successfully";
+
+                              Navigator.popAndPushNamed(context,UserListScreen.routeName);
+                              showDialogAlert(context, title, content);
+
+                              
+                            } catch (e) {
+                              var err = HTTPErrorType.fromJson(json.decode(e.toString()));
+                              var errObject = err.generateAlertitleContent();
+                              String title = errObject['title']!;
+                              String content = errObject['content']!;
+                              showDialogAlert(context, title, content);
+                            }
                           }),
                     ],
                   ),

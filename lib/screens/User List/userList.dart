@@ -9,7 +9,7 @@ import '../../side_menu.dart';
 import '../../header.dart';
 
 class UserListScreen extends StatefulWidget {
-  static String routeName = 'User List';
+  static const String routeName = 'User List';
 
   @override
   _UserListScreenState createState() => _UserListScreenState();

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../../side_menu.dart';
 
 class UserDetailsScreen extends StatelessWidget {
-  static String routeName = 'User Details';
+  final int id;
+  UserDetailsScreen({required this.id});
+  static const String routeName = 'User Details';
   @override
   Widget build(BuildContext context) {
 
