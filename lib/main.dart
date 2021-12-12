@@ -8,9 +8,11 @@ import 'package:admin/screens/User%20List/userList.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:url_strategy/url_strategy.dart';
 import 'routes.dart';
 
 void main() {
+  setPathUrlStrategy();
   runApp(MyApp());
 }
 
@@ -33,6 +35,7 @@ class MyApp extends StatelessWidget {
         pageRoutes.userList:(context)=> UserListScreen(),
         pageRoutes.userDetails:(context)=> UserDetailsScreen()
       },
+      onGenerateRoute: pageRoutes.generateRoute,
       
     );
   }

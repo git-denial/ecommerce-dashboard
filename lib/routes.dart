@@ -14,13 +14,16 @@ class pageRoutes{
     UserDetailsScreen.routeName: UserDetailsScreen()
   };
 
-  Route<dynamic> generateRoute(RouteSettings settings) {
+  static Route<dynamic> generateRoute(RouteSettings settings) {
   List<String> pathComponents = settings.name!.split('/');
   final Object? arguments = settings.arguments;
-  switch ("/"+pathComponents[1]) {
+  print(settings.name);
+  switch (pathComponents[0]) {
     case userDetails:
       return MaterialPageRoute(
-          builder: (context) => UserDetailsScreen(id: pathComponents[2]));
+        settings: settings,
+        builder: (context) => UserDetailsScreen()
+        );
     default:
       return MaterialPageRoute(builder: (context) => DashboardScreen());
   }
