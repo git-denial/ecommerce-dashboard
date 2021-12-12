@@ -68,7 +68,7 @@ class User extends ChangeNotifier {
     return x;
   } catch (e) {
     print(e);
-    return [];
+    throw e;
   }
 }
 
