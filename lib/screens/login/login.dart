@@ -1,7 +1,12 @@
 import 'dart:convert';
+import 'dart:js';
 
+import 'package:admin/models/Admin.dart';
+import 'package:admin/routes.dart';
 import 'package:flutter/material.dart';
 import '../../API.dart';
+import '../../dialogAlert.dart';
+import '../../error.dart';
 import 'widgets/custom_button.dart';
 import 'widgets/custom_textfield.dart';
 import 'widgets/text_widget.dart';
@@ -15,15 +20,39 @@ class Login extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<Login> {
+  bool loggedin = false;
+
+  bool? remem = false;
+  @override
+  void initState() {
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    
     final Size size = MediaQuery.of(context).size;
-    TextEditingController email = new TextEditingController(text: "");
+     TextEditingController username = new TextEditingController();
     TextEditingController password = TextEditingController(text: "");
     return Scaffold(
       body: Row(
-
         children: [
+          FutureBuilder(
+            future: Admin.tokenLogin(),
+            builder: (BuildContext ctx, AsyncSnapshot snapshot) {
+              if(snapshot.hasError){
+                  print(snapshot.error);
+                  print("snapshot.error");
+              }
+              else{
+                print("kokis");
+                //Future.delayed(Duration.zero, () => Navigator.pushReplacementNamed(context, pageRoutes.userList));
+                
+              }
+              return Text("");
+            },
+          ),
           Expanded(
               child: Container(
             color: const Color.fromARGB(255, 40, 42, 57),
@@ -31,20 +60,20 @@ class _LoginScreenState extends State<Login> {
               padding: const EdgeInsets.all(50),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       WSizedBox(wval: 0.05, hval: 0),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               TextWidget(
                                 text: 'Login to your account',
@@ -62,22 +91,24 @@ class _LoginScreenState extends State<Login> {
                               ),
                             ],
                           ),
-                          Divider(height: 100,),
-                           CustomTextField(
-                            controller: email ,
+                          Divider(
+                            height: 100,
+                          ),
+                          CustomTextField(
+                              controller: username,
                               borderradius: 20,
                               bordercolor: Color.fromARGB(255, 50, 54, 69),
                               widh: 0.32,
                               height: 0.09,
                               icon: Icons.mail,
                               iconColor: Colors.grey,
-                              hinttext: 'email',
+                              hinttext: 'username',
                               hintColor: Colors.grey,
                               fontsize: 15,
                               obscureText: false),
                           WSizedBox(wval: 0, hval: 0.02),
-                           CustomTextField(
-                            controller: password ,
+                          CustomTextField(
+                              controller: password,
                               borderradius: 20,
                               bordercolor: Color.fromARGB(255, 50, 54, 69),
                               widh: 0.32,
@@ -89,6 +120,19 @@ class _LoginScreenState extends State<Login> {
                               fontsize: 15,
                               obscureText: true),
                           WSizedBox(wval: 0, hval: 0.04),
+                          Row(
+                            children: [
+                              Text("Remeber me"),
+                              Checkbox(
+                                  activeColor: Color(0xff00C8E8),
+                                  value: remem,
+                                  onChanged: (v) {
+                                    setState(() {
+                                      remem = v;
+                                    });
+                                  }),
+                            ],
+                          ),
                           CustomButton(
                             buttontext: 'LOGIN',
                             width: 0.32,
@@ -98,9 +142,21 @@ class _LoginScreenState extends State<Login> {
                             fontsize: 12,
                             fontweight: FontWeight.bold,
                             fontcolor: Colors.white,
-                            onPressed: () {
-                              print(email.text);
+                            onPressed: () async {
+                              print(username.text);
                               print(password.text);
+                              try {
+                                await Admin.login(username.text, password.text,remem);
+                                Navigator.pushReplacementNamed(
+                                    context, pageRoutes.userList);
+                              } catch (e) {
+                                var err = HTTPErrorType.fromJson(
+                                    json.decode(e.toString()));
+                                var errObject = err.generateAlertitleContent();
+                                String title = errObject['title']!;
+                                String content = errObject['content']!;
+                                showDialogAlert(context, title, content);
+                              }
                             },
                           ),
                         ],
@@ -114,18 +170,5 @@ class _LoginScreenState extends State<Login> {
         ],
       ),
     );
-  }
-}
-
-Future<void> login(username,password) async {
-  try {
-    var body = {"username":username, "password":password};
-    
-    var x = await apiRequest("v1/user/login", "POST",body: json.encode(body));
-    print(x);
-    return x;
-  } catch (e) {
-    print(e);
-    throw e;
   }
 }

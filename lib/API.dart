@@ -1,16 +1,18 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:admin/models/Authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 final String baseUrl = 'http://localhost:10017';
-final Map<String, String> header = {
-  'Content-Type': 'application/json; charset=UTF-8',
-};
 
-Function apiRequest = (route, method, {token, body}) async {
+
+Function apiRequest = (route, method, {body}) async {
   print(body);
-  print("dfasfasf");
+  final Map<String, String> header = {
+  'Content-Type': 'application/json; charset=UTF-8',
+  'Authorization': 'Bearer ${Authentication.token}',
+};
   try {
     var response;
 
@@ -22,7 +24,7 @@ Function apiRequest = (route, method, {token, body}) async {
         response = await http.post(
           Uri.parse('${baseUrl}/${route}'),
           headers: header,
-          body: json.encode(body),
+          body: body == null ? null : json.encode(body),
         );
         break;
       case "PUT":

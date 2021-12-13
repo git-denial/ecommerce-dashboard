@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants.dart';
+import 'models/Admin.dart';
 
 class Header extends StatelessWidget {
   const Header({
@@ -54,15 +55,15 @@ class ProfileCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Image.asset(
-            "assets/images/profile_pic.png",
-            height: 38,
-          ),
+          // Image.asset(
+          //   "assets/images/profile_pic.png",
+          //   height: 38,
+          // ),
           if (!Responsive.isMobile(context))
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-              child: Text("Angelina Jolie"),
+              child: Text(Admin.loggedinAdmin?.username ?? "Unknown"),
             ),
           Icon(Icons.keyboard_arrow_down),
         ],
