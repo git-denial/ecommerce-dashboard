@@ -1,3 +1,4 @@
+import 'package:admin/screens/login/login.dart';
 import 'package:admin/screens/user/User%20Details/userdetailscreen.dart';
 import 'package:flutter/material.dart';
 import './screens/dashboard/dashboard_screen.dart';
@@ -7,11 +8,13 @@ class pageRoutes{
   static const String dashboard = DashboardScreen.routeName;
   static const String userList = UserListScreen.routeName;
   static const String userDetails = UserDetailsScreen.routeName;
+  static const String login = Login.routeName;
   
   static Map<String,dynamic> goTo = {
     DashboardScreen.routeName: DashboardScreen(),
     UserListScreen.routeName: UserListScreen(),
-    UserDetailsScreen.routeName: UserDetailsScreen()
+    UserDetailsScreen.routeName: UserDetailsScreen(),
+    Login.routeName: Login()
   };
 
   static Route<dynamic> generateRoute(RouteSettings settings) {

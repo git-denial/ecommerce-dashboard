@@ -1,5 +1,6 @@
 import 'package:admin/constants.dart';
 import 'package:admin/controllers/MenuController.dart';
+import 'package:admin/screens/login/login.dart';
 import 'package:admin/screens/user/User%20Details/userdetailscreen.dart';
 import 'package:admin/screens/dashboard/dashboard_screen.dart';
 import 'package:admin/screens/main/main_screen.dart';
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: UserListScreen(),
+      home: Login(),
       routes:{
+        pageRoutes.login:(context)=> Login(),
         pageRoutes.dashboard:(context)=> MainScreen(),
         pageRoutes.userList:(context)=> UserListScreen(),
         pageRoutes.userDetails:(context)=> UserDetailsScreen()
