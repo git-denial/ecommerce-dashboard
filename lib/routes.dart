@@ -1,7 +1,7 @@
-import 'package:admin/screens/User%20Details/userdetailscreen.dart';
+import 'package:admin/screens/user/User%20Details/userdetailscreen.dart';
 import 'package:flutter/material.dart';
 import './screens/dashboard/dashboard_screen.dart';
-import 'screens/User List/userList.dart';
+import 'screens/user/User List/userList.dart';
 class pageRoutes{
 
   static const String dashboard = DashboardScreen.routeName;

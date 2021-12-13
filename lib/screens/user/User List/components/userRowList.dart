@@ -5,7 +5,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../constants.dart';
+import '../../../../constants.dart';
 
 class UserRows extends StatelessWidget {
    UserRows({

@@ -1,7 +1,7 @@
 import 'package:admin/responsive.dart';
-import 'package:admin/screens/User%20Details/userDetails.dart';
+import 'package:admin/screens/user/User%20Details/userDetails.dart';
 import 'package:flutter/material.dart';
-import '../../side_menu.dart';
+import '../../../side_menu.dart';
 
 class UserDetailsScreen extends StatelessWidget {
   final int? id;

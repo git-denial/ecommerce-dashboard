@@ -1,5 +1,5 @@
 import 'package:admin/screens/dashboard/dashboard_screen.dart';
-import 'package:admin/screens/User%20List/userList.dart';
+import 'package:admin/screens/user/User%20List/userList.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
