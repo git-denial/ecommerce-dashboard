@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: MainScreen(),
+      home: UserListScreen(),
       routes:{
         pageRoutes.dashboard:(context)=> MainScreen(),
         pageRoutes.userList:(context)=> UserListScreen(),

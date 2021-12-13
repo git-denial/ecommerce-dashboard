@@ -46,18 +46,18 @@ class User extends ChangeNotifier {
   static fromJsonString(String x) =>
       new List<User>.from(json.decode(x).map((j) => User.fromJson(j)).toList());
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "email": email,
-        "full_name": full_name,
-        "created_at": created_at,
-        "modified_at": modified_at,
-        "enabled": enabled,
-        "city": city,
-        "province": province,
-        "zip_code": zip_code,
-        "phone_num": phone_num,
-        "address": address
+  static Map<String, dynamic> currentUsertoJson() => {
+        "id": currentUser?.id,
+        "email": currentUser?.email,
+        "full_name": currentUser?.full_name,
+        "created_at": currentUser?.created_at.toIso8601String(),
+        "modified_at": currentUser?.modified_at?.toIso8601String(),
+        "enabled": currentUser?.enabled,
+        "city": currentUser?.city,
+        "province": currentUser?.province,
+        "zip_code": currentUser?.zip_code,
+        "phone_num": currentUser?.phone_num,
+        "address": currentUser?.address
       };
 
   static Future<List<User>> getAll() async {
@@ -87,8 +87,7 @@ static Future<void> update(id,body) async {
   try {
     print(id);
     print(body);
-    var x = await apiRequest("v1/user/$id", "PUT",body);
-    x = User.fromJsonString(x);
+    var x = await apiRequest("v1/user/$id", "POST",body:body);
     return x;
   } catch (e) {
     print(e);

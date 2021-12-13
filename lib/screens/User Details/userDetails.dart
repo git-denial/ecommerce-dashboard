@@ -28,7 +28,8 @@ class UserDetails extends StatelessWidget {
             ElevatedButton(
                 child: const Icon(Icons.arrow_back),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.popAndPushNamed(
+                                  context, UserListScreen.routeName);
                 }),
             Text(
               "User Details",
@@ -60,6 +61,7 @@ class UserDetails extends StatelessWidget {
                           color: Colors.white,
                         )),
                     title: new TextField(
+                      onChanged: (v){User.currentUser?.email = v;},
                       controller:
                           TextEditingController(text: User.currentUser?.email),
                       decoration: new InputDecoration(
@@ -74,6 +76,7 @@ class UserDetails extends StatelessWidget {
                         )),
                     leading: const Icon(Icons.location_city),
                     title: new TextField(
+                      onChanged: (v){User.currentUser?.city = v;},
                       controller:
                           TextEditingController(text: User.currentUser?.city),
                       decoration: new InputDecoration(
@@ -88,6 +91,7 @@ class UserDetails extends StatelessWidget {
                         )),
                     leading: const Icon(Icons.place),
                     title: new TextField(
+                      onChanged: (v){User.currentUser?.province = v;},
                       controller: TextEditingController(
                           text: User.currentUser?.province),
                       decoration: new InputDecoration(
@@ -102,6 +106,7 @@ class UserDetails extends StatelessWidget {
                         )),
                     leading: const Icon(Icons.code),
                     title: new TextField(
+                      onChanged: (v){User.currentUser?.zip_code = v;},
                       controller: TextEditingController(
                           text: User.currentUser?.zip_code),
                       decoration: new InputDecoration(
@@ -116,6 +121,7 @@ class UserDetails extends StatelessWidget {
                         )),
                     leading: const Icon(Icons.phone),
                     title: new TextField(
+                      onChanged: (v){User.currentUser?.phone_num = v;},
                       controller: TextEditingController(
                           text: User.currentUser?.phone_num),
                       decoration: new InputDecoration(
@@ -134,7 +140,7 @@ class UserDetails extends StatelessWidget {
                           onPressed: () async {
                             try {
                               var res =
-                                  await User.update(User.currentUser?.id, json.encode({"full_name":User.currentUser?.full_name}));
+                                  await User.update(User.currentUser?.id, User.currentUsertoJson());
 
                               String title = "Success";
                               String content = "User updated successfully";
