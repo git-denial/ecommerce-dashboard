@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/error.dart';
 import 'package:admin/models/Admin.dart';
+import 'package:admin/models/Authentication.dart';
 import 'package:admin/responsive.dart';
 import 'package:admin/screens/admin/Admin%20List/components/adminRowList.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../../constants.dart';
 import '../../../side_menu.dart';
 import '../../../header.dart';
+import 'package:admin/routes.dart';
 
 class AdminListScreen extends StatefulWidget {
   static const String routeName = 'AdminList';
@@ -22,6 +24,10 @@ class _AdminListScreenState extends State<AdminListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if(Authentication.token == null){
+      Future.delayed(Duration.zero, () => Navigator.pushReplacementNamed(context, pageRoutes.login));
+      return Text("");
+    }
     MenuController.index = 1;
     return Scaffold(
       drawer: SideMenu(),

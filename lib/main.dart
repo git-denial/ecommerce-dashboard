@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
         canvasColor: secondaryColor,
       ),
 
+      initialRoute: pageRoutes.home,
       routes:pageRoutes.routes,
       //onGenerateRoute: pageRoutes.generateRoute,
       

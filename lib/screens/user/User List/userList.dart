@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:admin/error.dart';
+import 'package:admin/models/Authentication.dart';
 import 'package:admin/models/User.dart';
 import 'package:admin/responsive.dart';
+import 'package:admin/routes.dart';
 import 'package:admin/screens/user/User%20List/components/userRowList.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -20,6 +22,10 @@ class UserListScreen extends StatefulWidget {
 class _UserListScreenState extends State<UserListScreen> {
   @override
   Widget build(BuildContext context) {
+    if(Authentication.token == null){
+      Future.delayed(Duration.zero, () => Navigator.pushReplacementNamed(context, pageRoutes.login));
+      return Text("");
+    }
     return Scaffold(
       drawer: SideMenu(),
       body: SafeArea(

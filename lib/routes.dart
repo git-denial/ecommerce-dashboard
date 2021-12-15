@@ -16,7 +16,7 @@ class pageRoutes{
   static const String adminList =   '/' + AdminListScreen.routeName;
   static const String adminDetails =  '/' + AdminDetailsScreen.routeName;
   static const String login =   '/' + Login.routeName;
-  static  String home = '/';
+  static  String home = UserListScreen.routeName;
 
   static Map<String, WidgetBuilder> routes = {
         home: (context)=> UserListScreen(),
