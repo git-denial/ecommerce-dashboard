@@ -85,11 +85,7 @@ static Future<bool> login(username,password,remeberme) async {
     x = json.decode(x);
     print(x);
     loggedinAdmin = Admin.fromJson(x);
-    Authentication.token = Authentication.fromJson(x);
-
-    if(remeberme){
-      window.localStorage['token'] = Authentication.token ?? "";
-    }
+    Authentication.login(x, remeberme);
     
     return true;
   } catch (e) {

@@ -8,7 +8,7 @@ import 'package:flutter/cupertino.dart';
 
 class Authentication extends ChangeNotifier {
 
-  static String? token = window.localStorage['token'];
+  static String? token = window.localStorage['token'] ?? window.sessionStorage['token'];
 
 
 
@@ -17,9 +17,20 @@ class Authentication extends ChangeNotifier {
       
   }
 
+  static void login(x,remeberme){
+    Authentication.token = Authentication.fromJson(x);
+
+    if(remeberme){
+      window.localStorage['token'] = Authentication.token ?? "";
+    }else{
+      window.sessionStorage['token'] = Authentication.token ?? "";
+    }
+  }
+
   static void logout(){
     token = null;
     window.localStorage.remove('token');
+    window.sessionStorage.remove('token');
   }
 
 

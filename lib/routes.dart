@@ -10,7 +10,7 @@ import './screens/dashboard/dashboard_screen.dart';
 import 'screens/user/User List/userList.dart';
 class pageRoutes{
 
-  static const String dashboard =   DashboardScreen.routeName;
+  static const String dashboard =   '/' + DashboardScreen.routeName;
   static const String userList =   '/' + UserListScreen.routeName;
   static const String userDetails =   '/' + UserDetailsScreen.routeName;
   static const String adminList =   '/' + AdminListScreen.routeName;
