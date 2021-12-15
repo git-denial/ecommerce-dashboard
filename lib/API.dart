@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'package:admin/error.dart';
 import 'package:admin/models/Authentication.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -46,6 +47,13 @@ Function apiRequest = (route, method, {body}) async {
       return response.body;
     } 
     else {
+
+      if(response.statusCode == 403){
+        var err = HTTPErrorType.fromJson(json.decode(response.body));
+        if(err.code == "JWT_EXPIRED"){
+          Authentication.logout();
+        }
+      }
       // If the server did not return a 200 OK response,
       // then throw an exception.
       throw response.body;

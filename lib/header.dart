@@ -65,7 +65,7 @@ class ProfileCard extends StatelessWidget {
                   const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
               child: Text(Admin.loggedinAdmin?.username ?? "Unknown"),
             ),
-          Icon(Icons.keyboard_arrow_down),
+          //Icon(Icons.keyboard_arrow_down),
         ],
       ),
     );

@@ -18,12 +18,7 @@ class AdminRows extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Admin> admins = Admin.admins;
     print(admins);
-	//List xxx = List.generate(admins.length,(index) => (admins[index]));
-	//print(xxx);
-    // json.decode(admins).forEach((element) {
-    //   debugPrint(element['email']);
-    //   });
-    //Admin.fromJsonString(jsonAdmins).forEach((e)=>debugPrint(e.toString()));
+
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(

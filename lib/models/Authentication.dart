@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:core';
 import 'dart:html';
+import 'package:admin/models/Admin.dart';
+
 import '../API.dart';
 import 'dart:developer';
 
@@ -31,6 +33,15 @@ class Authentication extends ChangeNotifier {
     token = null;
     window.localStorage.remove('token');
     window.sessionStorage.remove('token');
+  }
+
+  static Future<void> initialize() async{
+    try {
+      await Admin.tokenLogin();  
+    } catch (e) {
+      logout();
+    }
+    
   }
 
 

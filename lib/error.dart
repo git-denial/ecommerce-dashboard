@@ -4,6 +4,7 @@ var ErrorUtil = {
   'NO_ADMIN_DATA' : {'title': 'Unauthorized', 'content':"You are unauthorized to perform this request"},
   'NO_TOKEN_PROVIDED': {'title': 'Unauthorized', 'content':"You are unauthorized to perform this request"},
   'JWT_MALFORMED': {'title': 'Unauthorized', 'content':"You are unauthorized to perform this request"},
+  'JWT_EXPIRED': {'title': 'Session expired', 'content':"You're session has expired, please login again"},
   'ADMIN_NOT_FOUND': {'title': 'Not found', 'content':"Username or password is incorrect"},
   'ADMIN_PASSWORD_WRONG': {'title': 'Not found', 'content':"Username or password is incorrect"},
   'MISSING_LOGIN_CREDENTIAL': {'title': 'Not found', 'content':"Username or password is incorrect"},

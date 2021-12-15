@@ -1,5 +1,6 @@
 import 'package:admin/constants.dart';
 import 'package:admin/controllers/MenuController.dart';
+import 'package:admin/models/Authentication.dart';
 import 'package:admin/screens/login/login.dart';
 import 'package:admin/screens/user/User%20Details/userdetailscreen.dart';
 import 'package:admin/screens/dashboard/dashboard_screen.dart';
@@ -12,7 +13,8 @@ import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'routes.dart';
 
-void main() {
+Future<void> main() async{
+  await Authentication.initialize();
   setPathUrlStrategy();
   runApp(MyApp());
 }
