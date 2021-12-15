@@ -32,7 +32,7 @@ Function apiRequest = (route, method, {body}) async {
         response = await http.put(
           Uri.parse('${baseUrl}/${route}'),
           headers: header,
-          body: body,
+          body: body == null ? null : json.encode(body),
         );
         break;
       case "DELETE":

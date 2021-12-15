@@ -78,7 +78,7 @@ DataRow adminDataRow(Admin admin, context) {
       DataCell(Text(admin.modified_at.toString()))
     ],
     onSelectChanged: (bool? value) {
-              Navigator.of(context).pushNamed('${pageRoutes.adminDetails}/${admin.id.toString()}');
+              Navigator.of(context).pushNamed('${pageRoutes.adminDetails}',arguments: admin.id);
               Admin.currentAdmin = admin;
             }
     

@@ -69,7 +69,7 @@ static Future<void> update(id,body) async {
   try {
     print(id);
     print(body);
-    var x = await apiRequest("v1/admin/$id", "POST",body:body);
+    var x = await apiRequest("v1/admin/$id", "PUT",body:body);
     return x;
   } catch (e) {
     print(e);

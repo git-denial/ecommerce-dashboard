@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:admin/models/Admin.dart';
+import 'package:admin/routes.dart';
 import 'package:admin/screens/admin/Admin%20List/adminList.dart';
 import 'package:flutter/material.dart';
 import '../../../dialogAlert.dart';
@@ -29,7 +30,7 @@ class AdminDetails extends StatelessWidget {
                 child: const Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.popAndPushNamed(
-                                  context, AdminListScreen.routeName);
+                                  context, pageRoutes.adminList);
                 }),
             Text(
               "Admin Details",
@@ -41,7 +42,7 @@ class AdminDetails extends StatelessWidget {
                 children: <Widget>[
                   new ListTile(
                     leading: const Icon(Icons.person),
-                    subtitle: const Text("Name",
+                    subtitle: const Text("Username",
                         style: TextStyle(
                           color: Colors.white,
                         )),

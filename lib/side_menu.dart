@@ -49,14 +49,8 @@ class _SideMenuState extends State<SideMenu> {
                 MenuController.index = 1;
               });
               },
-            // press: () {Navigator.pushReplacementNamed(context, pageRoutes.goTo[UserListScreen.routeName]);},
+            
           ),
-          // DrawerListTile(
-          //   title: "Dashboard",
-          //   svgSrc: "assets/icons/menu_dashbord.svg",
-          //   press: () {Navigator.of(context).pushNamed(pageRoutes.dashboard);},
-          //   // press: () {Navigator.pushReplacementNamed(context, pageRoutes.goTo[DashboardScreen.routeName]);},
-          // ),
          
           DrawerListTile(
             title: "Products",

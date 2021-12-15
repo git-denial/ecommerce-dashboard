@@ -1,3 +1,4 @@
+import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/error.dart';
 import 'package:admin/models/Admin.dart';
 import 'package:admin/responsive.dart';
@@ -19,6 +20,7 @@ class _AdminListScreenState extends State<AdminListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    MenuController.index = 1;
     return Scaffold(
       drawer: SideMenu(),
       body: SafeArea(

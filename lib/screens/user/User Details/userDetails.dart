@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:admin/models/User.dart';
+import 'package:admin/routes.dart';
 import 'package:admin/screens/user/User%20List/userList.dart';
 import 'package:flutter/material.dart';
 import '../../../dialogAlert.dart';
@@ -29,7 +30,7 @@ class UserDetails extends StatelessWidget {
                 child: const Icon(Icons.arrow_back),
                 onPressed: () {
                   Navigator.popAndPushNamed(
-                                  context, UserListScreen.routeName);
+                                  context, pageRoutes.userList);
                 }),
             Text(
               "User Details",
@@ -167,7 +168,7 @@ class UserDetails extends StatelessWidget {
                               String content = "User deleted successfully";
 
                               Navigator.popAndPushNamed(
-                                  context, UserListScreen.routeName);
+                                  context, pageRoutes.userList);
                               showDialogAlert(context, title, content);
                             } catch (e) {
                               var err = HTTPErrorType.fromJson(
