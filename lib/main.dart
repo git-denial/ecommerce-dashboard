@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      initialRoute: pageRoutes.home,
+
       routes:pageRoutes.routes,
       //onGenerateRoute: pageRoutes.generateRoute,
       

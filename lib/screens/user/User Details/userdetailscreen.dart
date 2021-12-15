@@ -6,7 +6,7 @@ import '../../../side_menu.dart';
 class UserDetailsScreen extends StatelessWidget {
   final int? id;
   UserDetailsScreen({this.id});
-  static const String routeName = 'User Details';
+  static const String routeName = 'UserDetails';
   @override
   Widget build(BuildContext context) {
 

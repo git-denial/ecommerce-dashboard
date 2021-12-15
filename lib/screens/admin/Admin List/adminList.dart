@@ -9,7 +9,7 @@ import '../../../side_menu.dart';
 import '../../../header.dart';
 
 class AdminListScreen extends StatefulWidget {
-  static const String routeName = 'Admin List';
+  static const String routeName = 'AdminList';
 
   @override
   _AdminListScreenState createState() => _AdminListScreenState();

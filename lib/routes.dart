@@ -11,12 +11,12 @@ import 'screens/user/User List/userList.dart';
 class pageRoutes{
 
   static const String dashboard =   DashboardScreen.routeName;
-  static const String userList =   UserListScreen.routeName;
-  static const String userDetails =   UserDetailsScreen.routeName;
-  static const String adminList =   AdminListScreen.routeName;
-  static const String adminDetails =   AdminDetailsScreen.routeName;
+  static const String userList =   '/' + UserListScreen.routeName;
+  static const String userDetails =   '/' + UserDetailsScreen.routeName;
+  static const String adminList =   '/' + AdminListScreen.routeName;
+  static const String adminDetails =  '/' + AdminDetailsScreen.routeName;
   static const String login =   Login.routeName;
-  static  String home = UserListScreen.routeName;
+  static  String home = '/';
 
   static Map<String, WidgetBuilder> routes = {
         home: (context)=> UserListScreen(),
