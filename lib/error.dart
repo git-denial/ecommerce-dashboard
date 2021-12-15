@@ -6,6 +6,7 @@ var ErrorUtil = {
   'JWT_MALFORMED': {'title': 'Unauthorized', 'content':"You are unauthorized to perform this request"},
   'ADMIN_NOT_FOUND': {'title': 'Not found', 'content':"Username or password is incorrect"},
   'ADMIN_PASSWORD_WRONG': {'title': 'Not found', 'content':"Username or password is incorrect"},
+  'MISSING_LOGIN_CREDENTIAL': {'title': 'Not found', 'content':"Username or password is incorrect"},
 
   'DEFAULT':{'title':"Unknown", 'content':"Unknown"}
 

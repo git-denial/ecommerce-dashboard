@@ -1,3 +1,4 @@
+import 'package:admin/models/Authentication.dart';
 import 'package:admin/screens/dashboard/dashboard_screen.dart';
 import 'package:admin/screens/user/User%20List/userList.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,8 @@ class _SideMenuState extends State<SideMenu> {
                 trailing: Icon(Icons.logout),
                 hoverColor:  Colors.red,
                 onTap: () {
-                  
+                  Authentication.logout();
+                  Navigator.of(context).popAndPushNamed(pageRoutes.login);
                 },
               ),
           

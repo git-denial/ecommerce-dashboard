@@ -17,6 +17,11 @@ class Authentication extends ChangeNotifier {
       
   }
 
+  static void logout(){
+    token = null;
+    window.localStorage.remove('token');
+  }
+
 
 
 }

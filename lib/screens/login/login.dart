@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:js';
 
 import 'package:admin/models/Admin.dart';
+import 'package:admin/models/Authentication.dart';
 import 'package:admin/routes.dart';
 import 'package:flutter/material.dart';
 import '../../API.dart';
@@ -21,33 +22,34 @@ class Login extends StatefulWidget {
 
 class _LoginScreenState extends State<Login> {
   bool loggedin = false;
-
   bool? remem = false;
+  TextEditingController username = new TextEditingController();
+  TextEditingController password = TextEditingController();
   @override
   void initState() {
-
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    
     final Size size = MediaQuery.of(context).size;
-     TextEditingController username = new TextEditingController();
-    TextEditingController password = TextEditingController(text: "");
+    
     return Scaffold(
       body: Row(
         children: [
+          if(Authentication.token != null)
           FutureBuilder(
             future: Admin.tokenLogin(),
             builder: (BuildContext ctx, AsyncSnapshot snapshot) {
-              if(snapshot.hasError){
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasError) {
                   print(snapshot.error);
                   print("snapshot.error");
-              }
-              else{
-                print("kokis");
-                //Future.delayed(Duration.zero, () => Navigator.pushReplacementNamed(context, pageRoutes.userList));
+                } else {
+                  print("hahah");
+                  Future.delayed(Duration.zero, () => Navigator.pushReplacementNamed(context, pageRoutes.userList));
+
+                }
                 
               }
               return Text("");
@@ -146,7 +148,8 @@ class _LoginScreenState extends State<Login> {
                               print(username.text);
                               print(password.text);
                               try {
-                                await Admin.login(username.text, password.text,remem);
+                                await Admin.login(
+                                    username.text, password.text, remem);
                                 Navigator.pushReplacementNamed(
                                     context, pageRoutes.userList);
                               } catch (e) {
