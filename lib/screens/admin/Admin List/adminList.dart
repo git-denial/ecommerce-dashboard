@@ -1,21 +1,21 @@
 import 'package:admin/error.dart';
-import 'package:admin/models/User.dart';
+import 'package:admin/models/Admin.dart';
 import 'package:admin/responsive.dart';
-import 'package:admin/screens/user/User%20List/components/userRowList.dart';
+import 'package:admin/screens/admin/Admin%20List/components/adminRowList.dart';
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../../constants.dart';
 import '../../../side_menu.dart';
 import '../../../header.dart';
 
-class UserListScreen extends StatefulWidget {
-  static const String routeName = 'User List';
+class AdminListScreen extends StatefulWidget {
+  static const String routeName = 'Admin List';
 
   @override
-  _UserListScreenState createState() => _UserListScreenState();
+  _AdminListScreenState createState() => _AdminListScreenState();
 }
 
-class _UserListScreenState extends State<UserListScreen> {
+class _AdminListScreenState extends State<AdminListScreen> {
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,7 @@ class _UserListScreenState extends State<UserListScreen> {
                               children: [
                                 SizedBox(height: defaultPadding),
                                 FutureBuilder(
-                                    future: User.getAll(),
+                                    future: Admin.getAll(),
                                     builder: (ctx, snapshot) {
                                       
                                       if(snapshot.hasError){
@@ -58,9 +58,12 @@ class _UserListScreenState extends State<UserListScreen> {
                                         String content = errObject?['content'] ??"Unknown";
                                         Future.delayed(Duration.zero, () => _showDialog(context,title,content));
                                         //showDialog(context: context, builder: (BuildContext context) => errorDialog(context));
+
                                       }
-                                      
-                                      return UserRows();  
+                                      else if(snapshot.hasData){
+
+                                      }
+                                      return AdminRows();  
                                       
                                     }),
                                 if (Responsive.isMobile(context))

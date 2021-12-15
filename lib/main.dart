@@ -30,14 +30,9 @@ class MyApp extends StatelessWidget {
             .apply(bodyColor: Colors.white),
         canvasColor: secondaryColor,
       ),
-      home: Login(),
-      routes:{
-        pageRoutes.login:(context)=> Login(),
-        pageRoutes.dashboard:(context)=> MainScreen(),
-        pageRoutes.userList:(context)=> UserListScreen(),
-        pageRoutes.userDetails:(context)=> UserDetailsScreen()
-      },
-      onGenerateRoute: pageRoutes.generateRoute,
+      initialRoute: pageRoutes.home,
+      routes:pageRoutes.routes,
+      //onGenerateRoute: pageRoutes.generateRoute,
       
     );
   }

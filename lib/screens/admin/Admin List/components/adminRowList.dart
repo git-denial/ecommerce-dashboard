@@ -1,5 +1,5 @@
 import 'package:admin/controllers/MenuController.dart';
-import 'package:admin/models/User.dart';
+import 'package:admin/models/Admin.dart';
 import 'package:admin/routes.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../constants.dart';
 
-class UserRows extends StatelessWidget {
-   UserRows({
+class AdminRows extends StatelessWidget {
+   AdminRows({
     Key? key,
   }) : super(key: key);
 
@@ -16,8 +16,14 @@ class UserRows extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<User> users = User.users;
-
+    List<Admin> admins = Admin.admins;
+    print(admins);
+	//List xxx = List.generate(admins.length,(index) => (admins[index]));
+	//print(xxx);
+    // json.decode(admins).forEach((element) {
+    //   debugPrint(element['email']);
+    //   });
+    //Admin.fromJsonString(jsonAdmins).forEach((e)=>debugPrint(e.toString()));
     return Container(
       padding: EdgeInsets.all(defaultPadding),
       decoration: BoxDecoration(
@@ -28,7 +34,7 @@ class UserRows extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "User List",
+            "Admin List",
             style: Theme.of(context).textTheme.subtitle1,
           ),
           SizedBox(
@@ -43,20 +49,9 @@ class UserRows extends StatelessWidget {
                   label: Text("ID"),
                 ),
                 DataColumn(
-                  label: Text("Full Name"),
+                  label: Text("Username"),
                 ),
-                DataColumn(
-                  label: Text("Email"),
-                ),
-                DataColumn(
-                  label: Text("City"),
-                ),
-                DataColumn(
-                  label: Text("Province"),
-                ),
-                DataColumn(
-                  label: Text("ZIP Code"),
-                ),
+              
                 DataColumn(
                   label: Text("Created at"),
                 ),
@@ -64,7 +59,7 @@ class UserRows extends StatelessWidget {
                   label: Text("Modified at"),
                 ),
               ],
-              rows: List.generate(users.length,(index) => userDataRow(users[index],context),
+              rows: List.generate(admins.length,(index) => adminDataRow(admins[index],context),
               ),
             ),
           ),
@@ -74,21 +69,17 @@ class UserRows extends StatelessWidget {
   }
 }
 
-DataRow userDataRow(User user, context) {
+DataRow adminDataRow(Admin admin, context) {
   return DataRow(
     cells: [
-      DataCell(Text(user.id.toString())),
-	    DataCell(Text(user.full_name)),
-      DataCell(Text(user.email)),
-      DataCell(Text(user.city ?? "")),
-      DataCell(Text(user.province ?? "")),
-      DataCell(Text(user.zip_code ?? "")),
-      DataCell(Text(user.created_at.toString())),
-      DataCell(Text(user.modified_at.toString()))
+      DataCell(Text(admin.id.toString())),
+	    DataCell(Text(admin.username)),
+      DataCell(Text(admin.created_at.toString())),
+      DataCell(Text(admin.modified_at.toString()))
     ],
     onSelectChanged: (bool? value) {
-              Navigator.of(context).pushNamed('${pageRoutes.userDetails}', arguments: user.id);
-              User.currentUser = user;
+              Navigator.of(context).pushNamed('${pageRoutes.adminDetails}/${admin.id.toString()}');
+              Admin.currentAdmin = admin;
             }
     
   );

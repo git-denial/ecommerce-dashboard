@@ -36,7 +36,7 @@ class _SideMenuState extends State<SideMenu> {
                 MenuController.index = 0;
               });
               },
-            // press: () {Navigator.pushReplacementNamed(context, pageRoutes.goTo[UserListScreen.routeName]);},
+           
           ),
 
           DrawerListTile(
@@ -44,7 +44,7 @@ class _SideMenuState extends State<SideMenu> {
             svgSrc: Icon(Icons.add_moderator_outlined),
             index: 1,
             press: () {
-              Navigator.of(context).pushNamed(pageRoutes.userList);
+              Navigator.of(context).pushNamed(pageRoutes.adminList);
               setState(() {
                 MenuController.index = 1;
               });

@@ -46,7 +46,7 @@ class _LoginScreenState extends State<Login> {
                   print(snapshot.error);
                   print("snapshot.error");
                 } else {
-                  print("hahah");
+
                   Future.delayed(Duration.zero, () => Navigator.pushReplacementNamed(context, pageRoutes.userList));
 
                 }
@@ -145,8 +145,6 @@ class _LoginScreenState extends State<Login> {
                             fontweight: FontWeight.bold,
                             fontcolor: Colors.white,
                             onPressed: () async {
-                              print(username.text);
-                              print(password.text);
                               try {
                                 await Admin.login(
                                     username.text, password.text, remem);

@@ -14,6 +14,7 @@ class Admin extends ChangeNotifier {
   final DateTime? modified_at;
   static Admin? currentAdmin;
   static Admin? loggedinAdmin;
+  static List<Admin> admins = [];
 
   Admin(
       {required this.id,
@@ -43,7 +44,9 @@ class Admin extends ChangeNotifier {
   static Future<List<Admin>> getAll() async {
   try {
     var x = await apiRequest("v1/admin", "GET");
+    print(x);
     x = Admin.fromJsonString(x);
+    admins = x;
     return x;
   } catch (e) {
     print(e);
