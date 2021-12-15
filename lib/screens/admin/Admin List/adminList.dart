@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/error.dart';
 import 'package:admin/models/Admin.dart';
@@ -53,12 +55,16 @@ class _AdminListScreenState extends State<AdminListScreen> {
                                     builder: (ctx, snapshot) {
                                       
                                       if(snapshot.hasError){
-                                        //Future.delayed(Duration.zero, () => _showDialog(context));
-                                        String err = snapshot.error.toString() ?? "";
-                                        var errObject = ErrorUtil[err];
-                                        String title = errObject?['title'] ??"Unknown";
-                                        String content = errObject?['content'] ??"Unknown";
-                                        Future.delayed(Duration.zero, () => _showDialog(context,title,content));
+                                        var err = HTTPErrorType.fromJson(json
+                                            .decode(snapshot.error.toString()));
+                                        var errObject =
+                                            err.generateAlertitleContent();
+                                        String title = errObject['title']!;
+                                        String content = errObject['content']!;
+                                        Future.delayed(
+                                            Duration.zero,
+                                            () => _showDialog(
+                                                context, title, content));
                                         //showDialog(context: context, builder: (BuildContext context) => errorDialog(context));
 
                                       }

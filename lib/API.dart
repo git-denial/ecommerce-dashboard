@@ -44,7 +44,8 @@ Function apiRequest = (route, method, {body}) async {
       // If the server did return a 200 OK response,
       // then parse the JSON.
       return response.body;
-    } else {
+    } 
+    else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
       throw response.body;
