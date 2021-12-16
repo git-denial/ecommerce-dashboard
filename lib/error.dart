@@ -8,6 +8,9 @@ var ErrorUtil = {
   'ADMIN_NOT_FOUND': {'title': 'Not found', 'content':"Username or password is incorrect"},
   'ADMIN_PASSWORD_WRONG': {'title': 'Not found', 'content':"Username or password is incorrect"},
   'MISSING_LOGIN_CREDENTIAL': {'title': 'Not found', 'content':"Username or password is incorrect"},
+  'DUPLICATE_USERNAME': {'title':"Duplicate username", 'content':"Please choose another username"},
+  'DUPLICATE_EMAIL': {'title':"Duplicate email", 'content':"Please choose another email"},
+  'INVALID_EMAIL': {'title':"Invalid email format", 'content':"Please use the right email format"},
 
   'DEFAULT':{'title':"Unknown", 'content':"Unknown"}
 

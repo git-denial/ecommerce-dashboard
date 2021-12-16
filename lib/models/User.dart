@@ -8,6 +8,7 @@ class User extends ChangeNotifier {
   final int id;
   String email, full_name;
   String? city, province, zip_code, phone_num, address;
+  num credit;
   final DateTime created_at;
   final DateTime? modified_at;
   bool enabled;
@@ -23,6 +24,7 @@ class User extends ChangeNotifier {
       this.phone_num,
       this.address,
       this.zip_code,
+      required this.credit,
       required this.enabled,
       required this.created_at,
       this.modified_at});
@@ -37,6 +39,7 @@ class User extends ChangeNotifier {
       phone_num: json['phone_num'],
       address: json['address'],
       zip_code: json['zip_code'],
+      credit: json['credit'],
       enabled: json["enabled"] == 1,
       created_at: DateTime.parse(json['created_at']),
       modified_at: DateTime.parse(json['modified_at']),
@@ -57,7 +60,8 @@ class User extends ChangeNotifier {
         "province": currentUser?.province,
         "zip_code": currentUser?.zip_code,
         "phone_num": currentUser?.phone_num,
-        "address": currentUser?.address
+        "address": currentUser?.address,
+        "credit": currentUser?.credit
       };
 
   static Future<List<User>> getAll() async {

@@ -27,7 +27,7 @@ class Admin extends ChangeNotifier {
       id: json['id'],
       username: json['username'],
       created_at: DateTime.parse(json['created_at']),
-      modified_at: DateTime.parse(json['modified_at']),
+      modified_at: json['modified_at'] == null? null: DateTime.parse(json['modified_at']),
     );
   }
 
