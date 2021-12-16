@@ -57,7 +57,7 @@ class _SideMenuState extends State<SideMenu> {
             svgSrc: Icon(Icons.shop),
             index: 2,
             press: () {
-              Navigator.of(context).pushNamed(pageRoutes.userList);
+              Navigator.of(context).pushNamed(pageRoutes.productList);
               setState(() {
                 MenuController.index = 2;
               });

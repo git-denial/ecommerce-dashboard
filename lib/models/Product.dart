@@ -15,11 +15,9 @@ class Product {
   num price;
   String? category;
   String? description;
-  String size;
-  String? size_description;
   num weight;
   String? main_photo_url;
-  List<String>? photos;
+  String? photos;
   bool available;
   bool active;
   final DateTime created_at;
@@ -30,8 +28,6 @@ class Product {
     required this.price,
     this.category,
     this.description,
-    required this.size,
-    this.size_description,
     required this.weight,
     this.main_photo_url,
     this.photos,
@@ -50,16 +46,15 @@ class Product {
       id: json['id'],
       name: json['name'],
       price: json['price'],
-      size: json['size'],
       weight: json['weight'],
-      available: json['available'],
-      active: json['active'],
+      available: json['available'] == 1,
+      active: json['active'] == 1,
       created_at: DateTime.parse(json['created_at']),
       modified_at: json['modified_at'] == null? null: DateTime.parse(json['modified_at']),
-      category: json['category'] ?? null,
-      description: json['description'] ?? null,
-      main_photo_url: json['main_photo_url'] ?? null,
-      photos: json['photos'] ?? null,
+      category: json['category'],
+      description: json['description'],
+      main_photo_url: json['main_photo_url'],
+      photos: json['photos'].toString(),
     );
   }
 
@@ -70,7 +65,6 @@ class Product {
     "id": currentProduct?.id,
       "name": currentProduct?.name,
       "price": currentProduct?.price,
-      "size": currentProduct?.size,
       "weight": currentProduct?.weight,
       "available": currentProduct?.available,
       "active": currentProduct?.active,
@@ -84,7 +78,7 @@ class Product {
 
   static Future<List<Product>> getAll() async {
   try {
-    var x = await apiRequest("v1/product", "GET");
+    var x = await apiRequest("v1/products", "GET");
     print(x);
     x = Product.fromJsonString(x);
     products = x;
@@ -118,9 +112,21 @@ static Future<void> update(id,body) async {
   }
 }
 
+static Future<void> delete(id) async {
+  try {
+    print(id);
+
+    var x = await apiRequest("v1/product/$id", "DELETE");
+    return x;
+  } catch (e) {
+    print(e);
+    throw e;
+  }
+}
+
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, price: $price, category: $category, description: $description, size: $size, size_description: $size_description, weight: $weight, main_photo_url: $main_photo_url, photos: $photos, available: $available, active: $active, created_at: $created_at, modified_at: $modified_at)';
+    return 'Product(id: $id, name: $name, price: $price, category: $category, description: $description, weight: $weight, main_photo_url: $main_photo_url, photos: $photos, available: $available, active: $active, created_at: $created_at, modified_at: $modified_at)';
   }
 }
