@@ -8,19 +8,19 @@ import 'package:http/http.dart' as http;
 
 final String baseUrl = 'http://localhost:10017';
 
-
 Function apiRequest = (route, method, {body}) async {
   print(body);
   final Map<String, String> header = {
-  HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
-  HttpHeaders.authorizationHeader: 'Bearer ${Authentication.token}',
-};
+    HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
+    HttpHeaders.authorizationHeader: 'Bearer ${Authentication.token}',
+  };
   try {
     var response;
 
     switch (method) {
       case "GET":
-        response = await http.get(Uri.parse('${baseUrl}/${route}'),headers: header);
+        response =
+            await http.get(Uri.parse('${baseUrl}/${route}'), headers: header);
         break;
       case "POST":
         response = await http.post(
@@ -37,7 +37,12 @@ Function apiRequest = (route, method, {body}) async {
         );
         break;
       case "DELETE":
-        response = await http.delete(Uri.parse('${baseUrl}/${route}'));
+        response = await http.delete(Uri.parse('${baseUrl}/${route}'),
+            headers: header);
+        break;
+      case "PATCH":
+        response =
+            await http.patch(Uri.parse('${baseUrl}/${route}'), headers: header);
         break;
     }
 
@@ -45,12 +50,10 @@ Function apiRequest = (route, method, {body}) async {
       // If the server did return a 200 OK response,
       // then parse the JSON.
       return response.body;
-    } 
-    else {
-
-      if(response.statusCode == 403){
+    } else {
+      if (response.statusCode == 403) {
         var err = HTTPErrorType.fromJson(json.decode(response.body));
-        if(err.code == "JWT_EXPIRED"){
+        if (err.code == "JWT_EXPIRED") {
           Authentication.logout();
         }
       }
