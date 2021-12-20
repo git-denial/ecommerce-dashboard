@@ -1,1 +1,1 @@
-flutter run -d web-server --web-port 5555
+flutter run -d web-server --web-port 5555 --web-renderer html

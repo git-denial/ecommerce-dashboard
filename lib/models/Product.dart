@@ -17,7 +17,7 @@ class Product {
   String? description;
   num weight;
   String? main_photo_url;
-  String? photos;
+  List <String>? photos;
   bool available;
   bool active;
   final DateTime created_at;
@@ -54,7 +54,7 @@ class Product {
       category: json['category'],
       description: json['description'],
       main_photo_url: json['main_photo_url'],
-      photos: json['photos'].toString(),
+      photos: List<String>.from(json['photos']),
     );
   }
 
