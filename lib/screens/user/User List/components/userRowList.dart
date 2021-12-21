@@ -27,10 +27,10 @@ class _UserRowsState extends State<UserRows> {
   String colindex = "ID";
   bool _sortAsc = true;
   bool enabled_user = true;
+  List<User> users = User.users;
 
   Widget build(BuildContext context) {
-    List<User> users =
-        User.users.where((element) => element.enabled == enabled_user).toList();
+    users = User.users.where((element) => element.enabled == enabled_user).toList();
 
     return Container(
       padding: EdgeInsets.all(defaultPadding),
@@ -96,7 +96,7 @@ class _UserRowsState extends State<UserRows> {
                     User.users.sort((a, b) => a.id.compareTo(b.id));
 
                     if (!_sortAsc) {
-                      User.users = users.reversed.toList();
+                      User.users = User.users.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -108,7 +108,7 @@ class _UserRowsState extends State<UserRows> {
                         .sort((a, b) => a.full_name.compareTo(b.full_name));
 
                     if (!_sortAsc) {
-                      User.users = users.reversed.toList();
+                      User.users = User.users.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -119,7 +119,7 @@ class _UserRowsState extends State<UserRows> {
                     User.users.sort((a, b) => a.email.compareTo(b.email));
 
                     if (!_sortAsc) {
-                      User.users = users.reversed.toList();
+                      User.users = User.users.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -137,7 +137,7 @@ class _UserRowsState extends State<UserRows> {
                               : a.city!.compareTo(b.city!));
 
                       if (!_sortAsc) {
-                        User.users = users.reversed.toList();
+                        User.users = User.users.reversed.toList();
                       }
                       setState(() {});
                     },
@@ -155,7 +155,7 @@ class _UserRowsState extends State<UserRows> {
                               : a.province!.compareTo(b.province!));
 
                       if (!_sortAsc) {
-                        User.users = users.reversed.toList();
+                        User.users = User.users.reversed.toList();
                       }
                       setState(() {});
                     },
@@ -173,7 +173,7 @@ class _UserRowsState extends State<UserRows> {
                               : a.zip_code!.compareTo(b.zip_code!));
 
                       if (!_sortAsc) {
-                        User.users = users.reversed.toList();
+                        User.users = User.users.reversed.toList();
                       }
                       setState(() {});
                     },
@@ -184,7 +184,7 @@ class _UserRowsState extends State<UserRows> {
                     User.users.sort((a, b) => a.credit.compareTo(b.credit));
 
                     if (!_sortAsc) {
-                      User.users = users.reversed.toList();
+                      User.users = User.users.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -196,7 +196,7 @@ class _UserRowsState extends State<UserRows> {
                         .sort((a, b) => a.created_at.compareTo(b.created_at));
 
                     if (!_sortAsc) {
-                      User.users = users.reversed.toList();
+                      User.users = User.users.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -213,7 +213,7 @@ class _UserRowsState extends State<UserRows> {
                             : a.modified_at!.compareTo(b.modified_at!));
 
                     if (!_sortAsc) {
-                      User.users = users.reversed.toList();
+                      User.users = User.users.reversed.toList();
                     }
                     setState(() {});
                   },

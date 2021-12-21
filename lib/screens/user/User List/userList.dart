@@ -12,8 +12,6 @@ import '../../../constants.dart';
 import '../../../side_menu.dart';
 import '../../../header.dart';
 
-
-
 class UserListScreen extends StatefulWidget {
   static const String routeName = 'UserList';
 
@@ -24,8 +22,9 @@ class UserListScreen extends StatefulWidget {
 class _UserListScreenState extends State<UserListScreen> {
   @override
   Widget build(BuildContext context) {
-    if(Authentication.token == null){
-      Future.delayed(Duration.zero, () => Navigator.pushReplacementNamed(context, pageRoutes.login));
+    if (Authentication.token == null) {
+      Future.delayed(Duration.zero,
+          () => Navigator.pushReplacementNamed(context, pageRoutes.login));
       return Text("");
     }
     return Scaffold(
@@ -71,8 +70,10 @@ class _UserListScreenState extends State<UserListScreen> {
                                                 context, title, content));
                                         //showDialog(context: context, builder: (BuildContext context) => errorDialog(context));
                                       }
-
-                                      return UserRows();
+                                      if (snapshot.hasData) {
+                                        return UserRows();
+                                      }
+                                      return Text("");
                                     }),
                                 if (Responsive.isMobile(context))
                                   SizedBox(height: defaultPadding),

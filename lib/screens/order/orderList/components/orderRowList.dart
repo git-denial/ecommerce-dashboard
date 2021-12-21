@@ -23,9 +23,10 @@ class _OrderRowsState extends State<OrderRows> {
   String colindex = "ID";
   bool _sortAsc = true;
   ShipmentState shipmentStatus = ShipmentState.WAITING_CONFIRMATION;
-  List<Order> orders = Order.orders.where((element) => element.shipment_status == ShipmentState.WAITING_CONFIRMATION.toString().split('.').last).toList();
+  List<Order> orders = Order.orders;
   @override
   Widget build(BuildContext context) {
+    orders = Order.orders.where((element) => element.shipment_status == shipmentStatus.toString().split('.').last).toList();
 
     return Container(
       padding: EdgeInsets.all(defaultPadding),
@@ -100,7 +101,7 @@ class _OrderRowsState extends State<OrderRows> {
                     Order.orders.sort((a, b) => a.id.compareTo(b.id));
 
                     if (!_sortAsc) {
-                      Order.orders = orders.reversed.toList();
+                      Order.orders = Order.orders.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -112,7 +113,7 @@ class _OrderRowsState extends State<OrderRows> {
                         .sort((a, b) => a.price_sum.compareTo(b.price_sum));
 
                     if (!_sortAsc) {
-                      Order.orders = orders.reversed.toList();
+                      Order.orders = Order.orders.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -124,7 +125,7 @@ class _OrderRowsState extends State<OrderRows> {
                         a.delivery_method.compareTo(b.delivery_method));
 
                     if (!_sortAsc) {
-                      Order.orders = orders.reversed.toList();
+                      Order.orders = Order.orders.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -135,7 +136,7 @@ class _OrderRowsState extends State<OrderRows> {
                     Order.orders.sort((a, b) => a.user_id.compareTo(b.user_id));
 
                     if (!_sortAsc) {
-                      Order.orders = orders.reversed.toList();
+                      Order.orders = Order.orders.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -152,7 +153,7 @@ class _OrderRowsState extends State<OrderRows> {
                             : a.paid_at!.compareTo(b.paid_at!));
 
                     if (!_sortAsc) {
-                      Order.orders = orders.reversed.toList();
+                      Order.orders = Order.orders.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -164,7 +165,7 @@ class _OrderRowsState extends State<OrderRows> {
                         .sort((a, b) => a.created_at.compareTo(b.created_at));
 
                     if (!_sortAsc) {
-                      Order.orders = orders.reversed.toList();
+                      Order.orders = Order.orders.reversed.toList();
                     }
                     setState(() {});
                   },
@@ -181,7 +182,7 @@ class _OrderRowsState extends State<OrderRows> {
                             : a.modified_at!.compareTo(b.modified_at!));
 
                     if (!_sortAsc) {
-                      Order.orders = orders.reversed.toList();
+                      Order.orders = Order.orders.reversed.toList();
                     }
                     setState(() {});
                   },
