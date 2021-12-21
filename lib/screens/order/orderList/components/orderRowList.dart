@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:js';
+
 import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/models/Order.dart';
 import 'package:admin/routes.dart';
@@ -7,6 +10,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../constants.dart';
+import '../../../../dialogAlert.dart';
+import '../../../../error.dart';
 
 var f = NumberFormat.currency(symbol: "Rp ");
 
@@ -107,7 +112,7 @@ class _OrderRowsState extends State<OrderRows> {
                   },
                 ),
                 DataColumn(
-                  label: Text("Price_sum"),
+                  label: Text("Price sum"),
                   onSort: (columnIndex, ascending) {
                     Order.orders
                         .sort((a, b) => a.price_sum.compareTo(b.price_sum));
@@ -187,6 +192,7 @@ class _OrderRowsState extends State<OrderRows> {
                     setState(() {});
                   },
                 ),
+                
               ],
               rows: List.generate(
                 orders.length,
@@ -209,7 +215,8 @@ DataRow orderDataRow(Order order, context) {
         DataCell(Text(order.user_id.toString())),
         DataCell(Text(order.paid_at.toString())),
         DataCell(Text(order.created_at.toString())),
-        DataCell(Text(order.modified_at.toString()))
+        DataCell(Text(order.modified_at.toString())),
+        //DataCell(dropdown(order.shipment_status,context,order.id)),
       ],
       onSelectChanged: (bool? value) {
         Navigator.of(context)
@@ -217,3 +224,5 @@ DataRow orderDataRow(Order order, context) {
         Order.currentOrder = order;
       });
 }
+
+

@@ -15,6 +15,38 @@ enum ShipmentState {
     ARRIVED
 }
 
+List<String> ShipmentStateStrings = ShipmentState.values.map((v)=>v.toString().split('.').last).toList();
+List<String> delivery_methodStrings = delivery_method.values.map((v)=>v.toString().split('.').last).toList();
+
+enum delivery_method {
+    JNE,
+    JNT,
+    POS ,
+    TIKI,
+    SICEPAT,
+    LION,
+    NINJA,
+    WAHANA,
+    PANDU,
+    PAHALA,
+    CAHAYA,
+    SLIS ,
+    FIRST ,
+    INDAH,
+    STAR ,
+    ESL,
+    PCP,
+    REX,
+    RPX,
+    SAP,
+    JET,
+    IDE,
+    IDL,
+    DSE,
+    NCS,
+}
+
+
 class Order {
   
   final int id;
@@ -67,6 +99,7 @@ class Order {
       shipment_status: json['shipment_status'],
       address_info: json['address_info'],
       city_code: json['city_code'],
+      zip_code: json['zip_code'],
       delivery_service: json["delivery_service"],
       delivery_method: json["delivery_method"],
       delivery_fee: json["delivery_fee"],
@@ -92,6 +125,7 @@ class Order {
       "shipment_status": currentOrder?.shipment_status,
       "address_info": currentOrder?.address_info,
       "city_code": currentOrder?.city_code,
+      "zip_code": currentOrder?.zip_code,
       "delivery_service": currentOrder?.delivery_service,
       "delivery_method": currentOrder?.delivery_method,
       "delivery_fee": currentOrder?.delivery_fee,
@@ -130,7 +164,7 @@ static Future<void> update(id,body) async {
   try {
     print(id);
     print(body);
-    var x = await apiRequest("v1/order/$id", "PUT",body:body);
+    var x = await apiRequest("v1/order/$id", "POST",body:body);
     return x;
   } catch (e) {
     print(e);
