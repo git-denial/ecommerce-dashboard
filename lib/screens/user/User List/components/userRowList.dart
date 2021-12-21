@@ -5,6 +5,7 @@ import 'package:admin/models/User.dart';
 import 'package:admin/routes.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../constants.dart';
@@ -19,6 +20,8 @@ class UserRows extends StatefulWidget {
   @override
   _UserRowsState createState() => _UserRowsState();
 }
+
+var f  =  NumberFormat.currency(symbol: "Rp ");
 
 class _UserRowsState extends State<UserRows> {
   String colindex = "ID";
@@ -243,7 +246,7 @@ DataRow userDataRow(User user, enabled, context, setState) {
         if (enabled) DataCell(Text(user.city ?? "")),
         if (enabled) DataCell(Text(user.province ?? "")),
         if (enabled) DataCell(Text(user.zip_code ?? "")),
-        DataCell(Text(user.credit.toString())),
+        DataCell(Text(f.format(user.credit))),
         DataCell(Text(user.created_at.toString())),
         DataCell(Text(user.modified_at.toString())),
         if (!enabled)

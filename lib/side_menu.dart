@@ -63,6 +63,17 @@ class _SideMenuState extends State<SideMenu> {
               });
               },
           ),
+          DrawerListTile(
+            title: "Orders",
+            svgSrc: Icon(Icons.inventory),
+            index: 3,
+            press: () {
+              Navigator.of(context).pushNamed(pageRoutes.orderList);
+              setState(() {
+                MenuController.index = 3;
+              });
+              },
+          ),
           ListTile(
                 title: Text("Log Out"),
                 trailing: Icon(Icons.logout),

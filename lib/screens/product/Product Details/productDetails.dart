@@ -1,19 +1,18 @@
 import 'dart:convert';
 import 'dart:html';
-
 import 'package:admin/models/Product.dart';
 import 'package:admin/routes.dart';
-import 'package:admin/screens/product/Product%20List/productList.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../dialogAlert.dart';
 import '../../../constants.dart';
 import '../../../error.dart';
-import '../../../side_menu.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({
     Key? key,
   }) : super(key: key);
+  
 
   @override
   _ProductDetailsState createState() => _ProductDetailsState();

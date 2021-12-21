@@ -3,9 +3,12 @@ import 'package:admin/models/Product.dart';
 import 'package:admin/routes.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../constants.dart';
+
+var f  =  NumberFormat.currency(symbol: "Rp ");
 
 class ProductRows extends StatefulWidget {
    ProductRows({
@@ -59,7 +62,7 @@ class _ProductRowsState extends State<ProductRows> {
             width: double.infinity,
             child: DataTable2(
               showCheckboxColumn: false,
-              columnSpacing: defaultPadding,
+              columnSpacing: 0,
 			        dataRowHeight:100,
               minWidth: 600,
               columns: [
@@ -184,7 +187,7 @@ DataRow productDataRow(Product product, context) {
     cells: [
       DataCell(Text(product.id.toString())),
 	    DataCell(Text(product.name)),
-      DataCell(Text(product.price.toString())),
+      DataCell(Text(f.format(product.price))),
       DataCell(Text(product.category ?? "")),
       DataCell(Text(product.weight.toString())),
       DataCell(Text(product.available.toString())),

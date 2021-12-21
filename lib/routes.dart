@@ -4,6 +4,8 @@ import 'package:admin/screens/admin/Admin%20Details/admindetailscreen.dart';
 import 'package:admin/screens/admin/Admin%20List/adminList.dart';
 import 'package:admin/screens/login/login.dart';
 import 'package:admin/screens/main/main_screen.dart';
+import 'package:admin/screens/order/Product%20Details/productdetailscreen.dart';
+import 'package:admin/screens/order/orderList/orderList.dart';
 import 'package:admin/screens/product/Product%20Details/productdetailscreen.dart';
 import 'package:admin/screens/product/Product%20List/productList.dart';
 import 'package:admin/screens/product/Product%20Details/productDetails.dart';
@@ -20,19 +22,24 @@ class pageRoutes{
   static const String adminDetails =  '/' + AdminDetailsScreen.routeName;
   static const String productList =   '/' + ProductListScreen.routeName;
   static const String productDetails =  '/' + ProductDetailsScreen.routeName;
+  static const String orderList =   '/' + OrderListScreen.routeName;
+  static const String orderDetails =  '/' + OrderDetailsScreen.routeName;
+  
   static const String login =   '/' + Login.routeName;
   static  String home = UserListScreen.routeName;
 
   static Map<String, WidgetBuilder> routes = {
         home: (context)=> UserListScreen(),
         login:(context)=> Login(),
-        //dashboard:(context)=> MainScreen(),
         userList:(context)=> UserListScreen(),
         userDetails:(context)=> UserDetailsScreen(),
         adminList:(context)=> AdminListScreen(),
         adminDetails:(context)=> AdminDetailsScreen(),
         productList:(context)=> ProductListScreen(),
         productDetails:(context)=> ProductDetailsScreen(),
+        orderList:(context)=> OrderListScreen(),
+        orderDetails:(context)=> OrderDetailsScreen(),
+        //dashboard:(context)=> MainScreen(),
       };
   
 

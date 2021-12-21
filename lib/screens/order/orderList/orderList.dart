@@ -1,31 +1,31 @@
 import 'dart:convert';
 
+import 'package:admin/controllers/MenuController.dart';
 import 'package:admin/error.dart';
 import 'package:admin/models/Authentication.dart';
-import 'package:admin/models/User.dart';
+import 'package:admin/models/Order.dart';
 import 'package:admin/responsive.dart';
 import 'package:admin/routes.dart';
-import 'package:admin/screens/user/User%20List/components/userRowList.dart';
 import 'package:flutter/material.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import '../../../constants.dart';
 import '../../../side_menu.dart';
 import '../../../header.dart';
+import 'components/orderRowList.dart';
 
-
-
-class UserListScreen extends StatefulWidget {
-  static const String routeName = 'UserList';
+class OrderListScreen extends StatefulWidget {
+  static const String routeName = 'OrderList';
 
   @override
-  _UserListScreenState createState() => _UserListScreenState();
+  _OrderListScreenState createState() => _OrderListScreenState();
 }
 
-class _UserListScreenState extends State<UserListScreen> {
+class _OrderListScreenState extends State<OrderListScreen> {
   @override
   Widget build(BuildContext context) {
-    if(Authentication.token == null){
-      Future.delayed(Duration.zero, () => Navigator.pushReplacementNamed(context, pageRoutes.login));
+    MenuController.index = 3;
+    if (Authentication.token == null) {
+      Future.delayed(Duration.zero,
+          () => Navigator.pushReplacementNamed(context, pageRoutes.login));
       return Text("");
     }
     return Scaffold(
@@ -56,7 +56,7 @@ class _UserListScreenState extends State<UserListScreen> {
                               children: [
                                 SizedBox(height: defaultPadding),
                                 FutureBuilder(
-                                    future: User.getAll(),
+                                    future: Order.getAll(),
                                     builder: (ctx, snapshot) {
                                       if (snapshot.hasError) {
                                         var err = HTTPErrorType.fromJson(json
@@ -71,8 +71,10 @@ class _UserListScreenState extends State<UserListScreen> {
                                                 context, title, content));
                                         //showDialog(context: context, builder: (BuildContext context) => errorDialog(context));
                                       }
-
-                                      return UserRows();
+                                      if (snapshot.hasData) {
+                                        return OrderRows();
+                                      }
+                                      return Text("");
                                     }),
                                 if (Responsive.isMobile(context))
                                   SizedBox(height: defaultPadding),
