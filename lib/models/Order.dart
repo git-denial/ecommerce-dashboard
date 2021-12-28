@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:html';
 
+import 'package:admin/models/OrderLines.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -57,7 +58,6 @@ class Order {
   num user_id;
   String city_code;
   String delivery_method;
-  String delivery_service;
   num delivery_fee;
   String? delivery_receipt;
   String? zip_code;
@@ -65,6 +65,8 @@ class Order {
   final DateTime? paid_at;
   final DateTime created_at;
   final DateTime? modified_at;
+
+ List<OrderLine>? order_line;
   Order({
     required this.id,
     required this.code,
@@ -74,7 +76,6 @@ class Order {
     required this.address_info,
     required this.city_code,
     required this.delivery_method,
-    required this.delivery_service,
     required this.delivery_fee,
     required this.delivery_receipt,
     this.paid_at,
@@ -100,7 +101,6 @@ class Order {
       address_info: json['address_info'],
       city_code: json['city_code'],
       zip_code: json['zip_code'],
-      delivery_service: json["delivery_service"],
       delivery_method: json["delivery_method"],
       delivery_fee: json["delivery_fee"],
       delivery_receipt: json["delivery_receipt"],
@@ -126,7 +126,6 @@ class Order {
       "address_info": currentOrder?.address_info,
       "city_code": currentOrder?.city_code,
       "zip_code": currentOrder?.zip_code,
-      "delivery_service": currentOrder?.delivery_service,
       "delivery_method": currentOrder?.delivery_method,
       "delivery_fee": currentOrder?.delivery_fee,
       "delivery_receipt": currentOrder?.delivery_receipt,  

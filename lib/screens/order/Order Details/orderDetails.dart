@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 import 'package:admin/models/Order.dart';
+import 'package:admin/models/OrderLines.dart';
 import 'package:admin/routes.dart';
 import 'package:admin/screens/admin/Admin%20List/components/adminRowList.dart';
 import 'package:flutter/material.dart';
@@ -99,15 +100,6 @@ class _OrderDetailsState extends State<OrderDetails> {
                     })),
                 lisTile(
                   icon: Icons.description,
-                  subtitle: "Delivery service",
-                  textControl: TextEditingController(
-                      text: Order.currentOrder?.delivery_service),
-                  onChanged: (v) {
-                    Order.currentOrder?.delivery_service = v;
-                  },
-                ),
-                lisTile(
-                  icon: Icons.description,
                   subtitle: "Delivery fee",
                   textControl: TextEditingController(
                       text: Order.currentOrder?.delivery_fee.toString()),
@@ -133,6 +125,22 @@ class _OrderDetailsState extends State<OrderDetails> {
                             setState(() {});
 
                             showDialogAlert(context, title, content);
+                          } catch (e) {
+                            var err = HTTPErrorType.fromJson(
+                                json.decode(e.toString()));
+                            var errObject = err.generateAlertitleContent();
+                            String title = errObject['title']!;
+                            String content = errObject['content']!;
+                            showDialogAlert(context, title, content);
+                          }
+                        }),
+                        ElevatedButton(
+                        child: const Text("Show details"),
+                        onPressed: () async {
+                          try {
+                            Order.currentOrder?.order_line = await OrderLine.getAllFromOrderId(Order.currentOrder?.id);
+                            
+                            Navigator.of(context).pushNamed(pageRoutes.orderLineDetails);
                           } catch (e) {
                             var err = HTTPErrorType.fromJson(
                                 json.decode(e.toString()));
