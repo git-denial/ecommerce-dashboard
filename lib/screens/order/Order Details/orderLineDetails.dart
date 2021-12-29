@@ -9,6 +9,8 @@ import '../../../dialogAlert.dart';
 import '../../../constants.dart';
 import '../../../error.dart';
 
+var screenSize;
+
 class OrderLinesDetails extends StatefulWidget {
   static const String routeName = 'OrderLineDetails';
   const OrderLinesDetails({
@@ -22,6 +24,7 @@ class OrderLinesDetails extends StatefulWidget {
 class _OrderLinesDetailsState extends State<OrderLinesDetails> {
   @override
   Widget build(BuildContext context) {
+    screenSize = MediaQuery.of(context).size;
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(defaultPadding),
@@ -42,27 +45,22 @@ class _OrderLinesDetailsState extends State<OrderLinesDetails> {
               children: <Widget>[
                 Column(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: List.generate(Order.currentOrder?.order_line?.length ?? 0, (index){
+                  children: List.generate(
+                      Order.currentOrder?.order_line?.length ?? 0, (index) {
                     var curorder = Order.currentOrder?.order_line?[index];
-                    return tester(curorder?.product?.name, curorder?.product?.main_photo_url, curorder?.quantity,curorder?.price,curorder?.description,curorder?.customization);
+                    return tester(
+                        curorder?.product?.name,
+                        curorder?.product?.main_photo_url,
+                        curorder?.quantity,
+                        curorder?.price,
+                        curorder?.description,
+                        curorder?.customization);
                   }),
                 ),
-                
-                
                 const Divider(
                   height: 20.0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                        child: const Text("Update"),
-                        onPressed: () {
-                          
-                        }),
-                    SizedBox(width: 50),
-                  ],
-                ),
+                
               ],
             ),
           ],
@@ -76,23 +74,21 @@ class lisTile extends StatelessWidget {
   final IconData icon;
   final String subtitle;
 
-  const lisTile(
-      {Key? key,
-      required this.icon,
-      required this.subtitle,
-      })
-      : super(key: key);
+  const lisTile({
+    Key? key,
+    required this.icon,
+    required this.subtitle,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return new ListTile(
-      leading: new Icon(icon),
-      subtitle: Text(subtitle,
-          style: TextStyle(
-            color: Colors.white,
-          )),
-      title: Text(subtitle)
-    );
+        leading: new Icon(icon),
+        subtitle: Text(subtitle,
+            style: TextStyle(
+              color: Colors.white,
+            )),
+        title: Text(subtitle));
   }
 }
 
@@ -116,59 +112,90 @@ Widget dropdown(dropdownValue, choices, onChanged) {
   );
 }
 
-Widget orderLineCard (product_name,quantity,price,customization,description){
+Widget orderLineCard(
+    product_name, quantity, price, customization, description) {
   return Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-             ListTile(
-              leading: Text(product_name),
-              title: Text(quantity.toString()),
-              subtitle:Text(price.toString()) ,
-            ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.end,
-            //   children: <Widget>[
-            //     TextButton(
-            //       child: const Text('BUY TICKETS'),
-            //       onPressed: () {/* ... */},
-            //     ),
-            //     const SizedBox(width: 8),
-            //     TextButton(
-            //       child: const Text('LISTEN'),
-            //       onPressed: () {/* ... */},
-            //     ),
-            //     const SizedBox(width: 8),
-            //   ],
-            // ),
-          ],
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        ListTile(
+          leading: Text(product_name),
+          title: Text(quantity.toString()),
+          subtitle: Text(price.toString()),
         ),
-      );
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.end,
+        //   children: <Widget>[
+        //     TextButton(
+        //       child: const Text('BUY TICKETS'),
+        //       onPressed: () {/* ... */},
+        //     ),
+        //     const SizedBox(width: 8),
+        //     TextButton(
+        //       child: const Text('LISTEN'),
+        //       onPressed: () {/* ... */},
+        //     ),
+        //     const SizedBox(width: 8),
+        //   ],
+        // ),
+      ],
+    ),
+  );
 }
 
-Widget tester(productName,imageUrl,quantity,price,description,customization){
-  return Card(
-            clipBehavior: Clip.antiAlias,
-            child: Column(
+Widget tester(
+    productName, imageUrl, quantity, price, description, customization) {
+  //customization.forEach((k,v)=>print(k + v));
+  print(customization.runtimeType);
+  //customization = Map<String, dynamic>.from(customization);
+  // List<dynamic> anjing =  [ for(var x in customization.keys) x+customization[x]]  ;
+  // print(anjing);
+
+  return Container(
+    width: screenSize.width / 2,
+    child: Card(
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: [
+          ListTile(
+            leading: Icon(Icons.arrow_drop_down_circle),
+            title: Text(productName),
+            subtitle: Text(
+              "Quantity:  ${quantity.toString()} \nPrice: ${price.toString()}",
+              style: TextStyle(color: Colors.white.withOpacity(0.6)),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Total Price: ${(price * quantity).toString()} ',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+          if (description != null)
+            Text("Description: " + description),
+          if (customization != null)
+            Row(
               children: [
-                ListTile(
-                  leading: Icon(Icons.arrow_drop_down_circle),
-                  title: Text(productName),
-                  subtitle: Text(
-                    "Quantity: " + quantity.toString(),
-                    style: TextStyle(color: Colors.white.withOpacity(0.6)),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Price: ${price.toString()} ',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-                Image.network(imageUrl?? "https://martialartsplusinc.com/wp-content/uploads/2017/04/default-image-620x600.jpg",height: 300,width: 300),
-                
+                for (var x in customization.keys)
+                  Expanded(
+                    child: Card(
+                        child: ListTile(
+                          tileColor: Colors.green,
+                          leading: Text(x),
+                          title: Text(customization[x].toString()),
+                          
+                        )),
+                  )
               ],
             ),
-          );
+          Image.network(
+              imageUrl ??
+                  "https://martialartsplusinc.com/wp-content/uploads/2017/04/default-image-620x600.jpg",
+              height: 300,
+              width: 300),
+        ],
+      ),
+    ),
+  );
 }
