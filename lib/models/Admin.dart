@@ -77,6 +77,22 @@ static Future<void> update(id,body) async {
   }
 }
 
+static Future<void> create(username,password) async {
+  try {
+     Map<String, dynamic> body = {
+       'username':username,
+       'password':password
+     };
+
+    print(body);
+    var x = await apiRequest("v1/admin/register", "POST",body:body);
+    return x;
+  } catch (e) {
+    print(e);
+    throw e;
+  }
+}
+
 static Future<bool> login(username,password,remeberme) async {
   try {
     var body = {"username":username, "password":password};

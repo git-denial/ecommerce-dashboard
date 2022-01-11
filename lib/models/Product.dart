@@ -54,7 +54,7 @@ class Product {
       category: json['category'],
       description: json['description'],
       main_photo_url: json['main_photo_url'],
-      photos: List<String>.from(json['photos']),
+      photos: json['photos'] == null? null : List<String>.from(json['photos']),
     );
   }
 
@@ -105,6 +105,18 @@ static Future<void> update(id,body) async {
     print(id);
     print(body);
     var x = await apiRequest("v1/product/$id", "PUT",body:body);
+    return x;
+  } catch (e) {
+    print(e);
+    throw e;
+  }
+}
+
+static Future<void> create(body) async {
+  
+  try {
+    print(body);
+    var x = await apiRequest("v1/product/create", "POST",body:body);
     return x;
   } catch (e) {
     print(e);

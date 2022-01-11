@@ -22,7 +22,6 @@ class _AdminRowsState extends State<AdminRows> {
   @override
   Widget build(BuildContext context) {
     List<Admin> admins = Admin.admins;
-    print(admins);
 
     return Container(
       padding: EdgeInsets.all(defaultPadding),
@@ -56,6 +55,16 @@ class _AdminRowsState extends State<AdminRows> {
                 activeColor: Colors.green,
           ),
              ],
+           ),
+           Row(
+mainAxisAlignment: MainAxisAlignment.end,
+             children:[
+               ElevatedButton(
+                          child: const Text("Create"),
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(pageRoutes.adminCreate);
+                          }),
+             ]
            ),
           SizedBox(
             width: double.infinity,

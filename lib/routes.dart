@@ -2,6 +2,7 @@ import 'dart:js';
 
 import 'package:admin/screens/admin/Admin%20Details/admindetailscreen.dart';
 import 'package:admin/screens/admin/Admin%20List/adminList.dart';
+import 'package:admin/screens/admin/AdminCreate/admincreatescreen.dart';
 import 'package:admin/screens/login/login.dart';
 import 'package:admin/screens/main/main_screen.dart';
 import 'package:admin/screens/order/Order%20Details/orderLineDetails.dart';
@@ -9,6 +10,7 @@ import 'package:admin/screens/order/orderList/orderList.dart';
 import 'package:admin/screens/product/Product%20Details/productdetailscreen.dart';
 import 'package:admin/screens/product/Product%20List/productList.dart';
 import 'package:admin/screens/product/Product%20Details/productDetails.dart';
+import 'package:admin/screens/product/ProductCreate/productcreatescreen.dart';
 import 'package:admin/screens/user/User%20Details/userdetailscreen.dart';
 import 'package:flutter/material.dart';
 import './screens/dashboard/dashboard_screen.dart';
@@ -21,8 +23,10 @@ class pageRoutes{
   static const String userDetails =   '/' + UserDetailsScreen.routeName;
   static const String adminList =   '/' + AdminListScreen.routeName;
   static const String adminDetails =  '/' + AdminDetailsScreen.routeName;
+  static const String adminCreate =  '/' + AdminCreatesScreen.routeName;
   static const String productList =   '/' + ProductListScreen.routeName;
   static const String productDetails =  '/' + ProductDetailsScreen.routeName;
+  static const String productCreate =  '/' + ProductCreateScreen.routeName;
   static const String orderList =   '/' + OrderListScreen.routeName;
   static const String orderDetails =  '/' + OrderDetailsScreen.routeName;
   static const String orderLineDetails =  '/' + OrderLinesDetails.routeName;
@@ -42,6 +46,8 @@ class pageRoutes{
         orderList:(context)=> OrderListScreen(),
         orderDetails:(context)=> OrderDetailsScreen(),
         orderLineDetails:(context)=> OrderLinesDetails(),
+        adminCreate:(context)=> AdminCreatesScreen(),
+        productCreate:(context)=>ProductCreateScreen()
         //dashboard:(context)=> MainScreen(),
       };
   

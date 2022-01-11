@@ -11,6 +11,7 @@ var ErrorUtil = {
   'DUPLICATE_USERNAME': {'title':"Duplicate username", 'content':"Please choose another username"},
   'DUPLICATE_EMAIL': {'title':"Duplicate email", 'content':"Please choose another email"},
   'INVALID_EMAIL': {'title':"Invalid email format", 'content':"Please use the right email format"},
+  'MISSING_INFO': {'title':"Missing required data", 'content':"Please fill all the required field"},
 
   'DEFAULT':{'title':"Unknown", 'content':"Unknown"}
 

@@ -67,7 +67,18 @@ class _ProductDetailsState extends State<ProductDetails> {
                 textControl: TextEditingController(text: Product.currentProduct?.main_photo_url),
                 onChanged: (v){Product.currentProduct?.main_photo_url = v;},),
 
-               
+                Text("Available"),
+                Switch(
+                value: Product.currentProduct?.available ?? false,
+                onChanged: (value) {
+                  setState(() {
+                    Product.currentProduct?.available = value;
+                  });
+                },
+                activeTrackColor: Colors.lightGreenAccent,
+                activeColor: Colors.green,
+              ),
+
                 const Divider(
                   height: 20.0,
                 ),
